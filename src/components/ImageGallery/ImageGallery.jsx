@@ -1,11 +1,20 @@
 import ImageCard from "../ImageCard/ImageCard";
+import style from "./ImageGallery.module.css";
 
-const ImageGallery = () => {
+const ImageGallery = ({ images, onOpenModal }) => {
   return (
-    <ul>
-      <li>
-        <ImageCard />
-      </li>
+    <ul className={style.galleryList}>
+      {images.map((image) => {
+        return (
+          <li
+            className={style.galleryItem}
+            key={image.id}
+            onClick={() => onOpenModal}
+          >
+            <ImageCard image={image} onOpenModal={onOpenModal} />
+          </li>
+        );
+      })}
     </ul>
   );
 };

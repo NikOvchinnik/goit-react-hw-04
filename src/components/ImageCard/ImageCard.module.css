@@ -1,0 +1,23 @@
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgb(187, 180, 180);
+}
+
+.cardImg {
+  object-fit: cover;
+  width: 300px;
+  height: 200px;
+}
+
+.cardText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}

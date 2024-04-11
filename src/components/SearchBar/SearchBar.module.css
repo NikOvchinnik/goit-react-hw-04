@@ -1,0 +1,27 @@
+header {
+  background-color: rgb(28, 28, 174);
+  padding: 15px 0;
+}
+
+.headerForm {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerInput {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.headerBtn {
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.headerBtn:hover {
+  background-color: rgb(160, 160, 255);
+  color: aliceblue;
+}

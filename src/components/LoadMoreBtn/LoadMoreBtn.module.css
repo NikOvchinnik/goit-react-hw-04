@@ -1,0 +1,16 @@
+.containerMore {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btnMore {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(28, 28, 174);
+}
+
+.btnMore:hover {
+  background-color: rgb(160, 160, 255);
+  color: aliceblue;
+}
