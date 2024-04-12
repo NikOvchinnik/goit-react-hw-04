@@ -6,7 +6,7 @@ const headers = {
   Authorization: `Client-ID ${ACCESS_KEY}`,
 };
 
-export const fetchImages = async (image, page = 1) => {
+export const fetchImages = async (image, page) => {
   const searchUrl = `/search/photos?page=${page}&per_page=20&query=${image}`;
   const response = await axios.get(searchUrl, { headers });
   return response.data;

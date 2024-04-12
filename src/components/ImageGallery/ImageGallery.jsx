@@ -9,7 +9,6 @@ const ImageGallery = ({ images, onOpenModal }) => {
           <li
             className={style.galleryItem}
             key={image.id}
-            onClick={() => onOpenModal}
           >
             <ImageCard image={image} onOpenModal={onOpenModal} />
           </li>

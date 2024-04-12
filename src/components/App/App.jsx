@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchImages } from "../../api";
 import style from "./App.module.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -16,37 +16,34 @@ const App = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImg, setModalImg] = useState(null);
-  const [searchUser, setSearchUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const onSearch = async (searchValue) => {
-    try {
-      setImages([]);
-      setError(false);
-      setLoading(true);
-      setSearchUser(searchValue);
-      const data = await fetchImages(searchValue);
-      setTotalPage(data.total_pages);
-      setImages(data.results);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!searchQuery) return;
+      try {
+        setLoading(true);
+        setError(false);
+        const data = await fetchImages(searchQuery, page);
+        setTotalPage(data.total_pages);
+        setImages((prevImages) => [...prevImages, ...data.results]);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [searchQuery, page]);
+
+  const onSearch = (searchValue) => {
+    setImages([]);
+    setPage(1);
+    setSearchQuery(searchValue);
   };
 
-  const onLoadMore = async () => {
-    try {
-      setLoading(true);
-      setPage((prev) => {
-        return (prev += 1);
-      });
-      const data = await fetchImages(searchUser, page + 1);
-      setImages((prevImages) => [...prevImages, ...data.results]);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+  const onLoadMore = () => {
+    setPage((prev) => prev + 1);
   };
 
   function onOpenModal(img) {
